@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "Se70d1I5CBDnQ+uEaoxJt1jS3/ZkZvfUzCB03ECrw3s8dha7DwSKQT/i0Vbg3jHFdoGhSPqatl99Yf23mMxdRA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lic\\Desktop\\MasterRad v2\\Projekat\\AproxiCalc\\AproxiCalc.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lic\\.nuget\\packages\\materialdesigncolors\\3.1.0\\materialdesigncolors.3.1.0.nupkg.sha512",
+    "C:\\Users\\lic\\.nuget\\packages\\materialdesignthemes\\5.1.0\\materialdesignthemes.5.1.0.nupkg.sha512",
+    "C:\\Users\\lic\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512"
+  ],
+  "logs": []
+}
