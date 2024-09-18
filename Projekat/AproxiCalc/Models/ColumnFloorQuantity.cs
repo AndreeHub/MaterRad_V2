@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace AproxiCalc.Models
 {
-    internal class ColumnFloorQuantity
+    public class ColumnFloorQuantity
     {
+        public Column Column { get; set; }
+        public Floor Floor { get; set; }
+        public int Quantity { get; set; }
     }
 }

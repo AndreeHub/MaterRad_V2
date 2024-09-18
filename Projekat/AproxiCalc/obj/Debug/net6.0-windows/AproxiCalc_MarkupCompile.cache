@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\lic\Desktop\MasterRad v2\Projekat\AproxiCalc\App.xaml
-5564807787
+51162197120
 
-20-510693048
+20-2097174539
 197856320397
-MainWindow.xaml;Views\BuildingView.xaml;Views\CalculationView.xaml;Views\ColumnsView.xaml;Views\MainWindow.xaml;
+Views\BuildingView.xaml;Views\CalculationView.xaml;Views\ColumnsView.xaml;Views\MainWindow.xaml;Views\ModelView.xaml;
 
 False
 

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace AproxiCalc.Helpers
 {
-    internal class EnumHelper
+    public static class EnumHelper
     {
+        public static IEnumerable<T> GetValues<T>() => (T[])Enum.GetValues(typeof(T));
     }
 }

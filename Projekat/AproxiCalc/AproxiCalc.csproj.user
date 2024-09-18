@@ -19,11 +19,11 @@
     <Compile Update="Views\MainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\ModelView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="MainWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\BuildingView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -34,6 +34,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ModelView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

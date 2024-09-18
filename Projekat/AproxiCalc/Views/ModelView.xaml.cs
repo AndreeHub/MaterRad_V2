@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AproxiCalc
+namespace AproxiCalc.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ModelView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ModelView : UserControl
     {
-        public MainWindow()
+        public ModelView()
         {
             InitializeComponent();
         }

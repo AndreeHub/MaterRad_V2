@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace AproxiCalc.Views
@@ -17,7 +18,7 @@ namespace AproxiCalc.Views
     /// <summary>
     /// Interaction logic for ColumnsView.xaml
     /// </summary>
-    public partial class ColumnsView : Window
+    public partial class ColumnsView : UserControl
     {
         public ColumnsView()
         {

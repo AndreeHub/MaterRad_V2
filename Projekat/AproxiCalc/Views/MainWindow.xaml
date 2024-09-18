@@ -3,10 +3,57 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AproxiCalc.Views"
+        xmlns:views="clr-namespace:AproxiCalc.Views"
+        xmlns:viewModels="clr-namespace:AproxiCalc.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Structural Analysis Application"
+        Height="600"
+        Width="1000">
+    <!--
+    <Window.DataContext>
+        <viewModels:MainViewModel />
+    </Window.DataContext>
+     -->
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Side Menu -->
+        <StackPanel Grid.Column="0"
+                    Background="{DynamicResource MaterialDesignPaper}">
+            <Button Command="{Binding ShowColumnsViewCommand}"
+                    Content="Columns"
+                    Style="{StaticResource MaterialDesignFlatButton}" />
+            <Button Command="{Binding ShowBuildingViewCommand}"
+                    Content="Building"
+                    Style="{StaticResource MaterialDesignFlatButton}" />
+            <Button Command="{Binding ShowModelViewCommand}"
+                    Content="Model"
+                    Style="{StaticResource MaterialDesignFlatButton}" />
+            <Button Command="{Binding ShowCalculationViewCommand}"
+                    Content="Calculation"
+                    Style="{StaticResource MaterialDesignFlatButton}" />
+        </StackPanel>
+
+        <!-- Content Area -->
+        <ContentControl Grid.Column="1"
+                        Content="{Binding CurrentViewModel}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type viewModels:ColumnsViewModel}">
+                    <views:ColumnsView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModels:BuildingViewModel}">
+                    <views:BuildingView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModels:ModelViewModel}">
+                    <views:ModelView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModels:CalculationViewModel}">
+                    <views:CalculationView />
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
     </Grid>
 </Window>
