@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace AproxiCalc.Models
 {
@@ -47,8 +50,13 @@ namespace AproxiCalc.Models
 
     public enum ColumnType
     {
+        [Display(Name = "Rigid-Rigid")]
         RigidRigid,
+
+        [Display(Name = "Pinned-Rigid")]
         PinnedRigid,
+
+        [Display(Name = "Pinned-Pinned")]
         PinnedPinned
     }
 }

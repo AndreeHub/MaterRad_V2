@@ -1,56 +1,146 @@
 ﻿<UserControl x:Class="AproxiCalc.Views.ColumnsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:AproxiCalc.Views"
              xmlns:models="clr-namespace:AproxiCalc.Models"
-             xmlns:helpers="clr-namespace:AproxiCalc.Helpers"
              xmlns:viewModels="clr-namespace:AproxiCalc.ViewModels"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:helpers="clr-namespace:AproxiCalc.Helpers">
+
+    <!-- DataContext is inherited from the parent; no need to set it here -->
     <UserControl.Resources>
-        <ObjectDataProvider MethodName="GetValues"
-                            ObjectType="{x:Type helpers:EnumHelper}"
-                            x:Key="ColumnTypeEnum">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="models:ColumnType" />
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
+        <!-- Add the converter to resources -->
+        <helpers:EnumDisplayNameConverter x:Key="EnumDisplayNameConverter" />
     </UserControl.Resources>
-     <!--
-    <UserControl.DataContext>
-        <viewModels:ColumnsViewModel />
-    </UserControl.DataContext>
-      -->
-    <Grid>
-        <StackPanel Margin="10">
-            <DataGrid ItemsSource="{Binding Columns}"
-                      AutoGenerateColumns="False"
-                      SelectedItem="{Binding SelectedColumn}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name"
-                                        Binding="{Binding Name}" />
-                    <DataGridComboBoxColumn Header="Type"
-                                            SelectedItemBinding="{Binding Type}"
-                                            ItemsSource="{Binding Source={StaticResource ColumnTypeEnum}}" />
-                    <DataGridTextColumn Header="Modulus E"
-                                        Binding="{Binding ModulusE}" />
-                    <DataGridTextColumn Header="Moment of Inertia I"
-                                        Binding="{Binding MomentOfInertia}" />
-                </DataGrid.Columns>
-            </DataGrid>
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Right">
-                <Button Content="Add"
-                        Command="{Binding AddColumnCommand}"
-                        Style="{StaticResource MaterialDesignRaisedButton}"
-                        Margin="5" />
-                <Button Content="Delete"
-                        Command="{Binding DeleteColumnCommand}"
-                        Style="{StaticResource MaterialDesignRaisedButton}"
-                        Margin="5" />
-            </StackPanel>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- Input fields -->
+            <RowDefinition Height="*" />
+            <!-- DataGrid -->
+            <RowDefinition Height="Auto" />
+            <!-- Delete button -->
+        </Grid.RowDefinitions>
+
+        <!-- Input Fields -->
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="0">
+            <!-- First Row: Name and Type -->
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Name -->
+                <TextBlock Text="Name:"
+                           VerticalAlignment="Center"
+                           Margin="5" />
+                <TextBox Text="{Binding NewColumnName, UpdateSourceTrigger=PropertyChanged}"
+                         Grid.Column="1"
+                         Margin="5" />
+
+                <!-- Type -->
+                <TextBlock Text="Type:"
+                           VerticalAlignment="Center"
+                           Grid.Column="2"
+                           Margin="5" />
+                <ComboBox ItemsSource="{Binding ColumnTypes}"
+                          SelectedItem="{Binding NewColumnType}"
+                          Grid.Column="3"
+                          Margin="5">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource EnumDisplayNameConverter}}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
+
+            <!-- Second Row: Modulus E and Moment of Inertia I -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <!-- Label: Modulus E -->
+                    <ColumnDefinition Width="*" />
+                    <!-- Input: Modulus E -->
+                    <ColumnDefinition Width="Auto" />
+                    <!-- Unit: Modulus E -->
+                    <ColumnDefinition Width="Auto" />
+                    <!-- Label: Moment of Inertia I -->
+                    <ColumnDefinition Width="*" />
+                    <!-- Input: Moment of Inertia I -->
+                    <ColumnDefinition Width="Auto" />
+                    <!-- Unit: Moment of Inertia I -->
+                </Grid.ColumnDefinitions>
+
+                <!-- Modulus E -->
+                <TextBlock Text="Modulus E:"
+                           VerticalAlignment="Center"
+                           Margin="5"
+                           Grid.Column="0" />
+                <TextBox Text="{Binding NewColumnModulusE, UpdateSourceTrigger=PropertyChanged}"
+                         Grid.Column="1"
+                         Margin="5" />
+                <TextBlock Text="GPa"
+                           VerticalAlignment="Center"
+                           Margin="5"
+                           Grid.Column="2" />
+
+                <!-- Moment of Inertia I -->
+                <TextBlock Text="Moment of Inertia I:"
+                           VerticalAlignment="Center"
+                           Grid.Column="3"
+                           Margin="5" />
+                <TextBox Text="{Binding NewColumnMomentOfInertia, UpdateSourceTrigger=PropertyChanged}"
+                         Grid.Column="4"
+                         Margin="5" />
+                <TextBlock Text="m⁴"
+                           VerticalAlignment="Center"
+                           Margin="5"
+                           Grid.Column="5" />
+            </Grid>
+
+            <!-- Add Button -->
+            <Button Content="Add"
+                    Command="{Binding AddColumnCommand}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    HorizontalAlignment="Right"
+                    Margin="5" />
+        </StackPanel>
+
+        <!-- DataGrid -->
+        <DataGrid ItemsSource="{Binding Columns}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  SelectedItem="{Binding SelectedColumn}"
+                  Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name"
+                                    Binding="{Binding Name}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Type"
+                                    Binding="{Binding Type}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Modulus E (GPa)"
+                                    Binding="{Binding ModulusE}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Moment of Inertia I (m⁴)"
+                                    Binding="{Binding MomentOfInertia}"
+                                    Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Delete Button -->
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Grid.Row="2"
+                    Margin="5">
+            <Button Content="Delete"
+                    Command="{Binding DeleteColumnCommand}"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    Margin="5" />
         </StackPanel>
     </Grid>
 </UserControl>
