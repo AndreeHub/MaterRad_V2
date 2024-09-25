@@ -4,7 +4,8 @@
              xmlns:models="clr-namespace:AproxiCalc.Models"
              xmlns:viewModels="clr-namespace:AproxiCalc.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:helpers="clr-namespace:AproxiCalc.Helpers">
+             xmlns:helpers="clr-namespace:AproxiCalc.Helpers"
+>
 
     <!-- DataContext is inherited from the parent; no need to set it here -->
     <UserControl.Resources>
